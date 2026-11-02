@@ -1,0 +1,93 @@
+
+server_names = ['cloudflare']
+
+listen_addresses = ['127.0.0.1:5354']
+
+max_clients = 250
+
+ipv4_servers = true
+ipv6_servers = false
+dnscrypt_servers = true
+doh_servers = true
+odoh_servers = false
+
+require_dnssec = true
+require_nolog = true
+require_nofilter = true
+disabled_server_names = []
+
+force_tcp = false
+http3 = false
+http3_probe = false
+
+timeout = 5000
+keepalive = 30
+
+log_file = '/storage/emulated/0/dnscrypt-proxy/dnscrypt-proxy.log'
+log_file_latest = true
+log_files_max_size = 10
+
+cert_refresh_delay = 240
+
+pqdnscrypt = true
+
+bootstrap_resolvers = ['1.1.1.1:53', '8.8.8.8:53']
+
+ignore_system_dns = true
+
+netprobe_timeout = 60
+netprobe_address = '1.1.1.1:53'
+
+block_ipv6 = true
+block_unqualified = true
+block_undelegated = true
+
+reject_ttl = 10
+
+cache = true
+cache_size = 4096
+cache_min_ttl = 2400
+cache_max_ttl = 86400
+cache_neg_min_ttl = 60
+cache_neg_max_ttl = 600
+
+[captive_portals]
+map_file = '/storage/emulated/0/dnscrypt-proxy/captive-portals.txt'
+
+[blocked_names]
+blocked_names_file = '/storage/emulated/0/dnscrypt-proxy/blocked-names.txt'
+log_file = '/storage/emulated/0/dnscrypt-proxy/blocked-names.log'
+
+[allowed_names]
+allowed_names_file = '/storage/emulated/0/dnscrypt-proxy/allowed-names.txt'
+
+[sources.public-resolvers]
+urls = [
+  'https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md',
+  'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md',
+  'https://cdn.jsdelivr.net/gh/DNSCrypt/dnscrypt-resolvers@master/v3/public-resolvers.md'
+]
+cache_file = 'public-resolvers.md'
+minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+refresh_delay = 73
+prefix = ''
+
+[broken_implementations]
+fragments_blocked = [
+  'cisco',
+  'cisco-ipv6',
+  'cisco-familyshield',
+  'cisco-familyshield-ipv6',
+  'cisco-sandbox',
+  'cleanbrowsing-adult',
+  'cleanbrowsing-adult-ipv6',
+  'cleanbrowsing-family',
+  'cleanbrowsing-family-ipv6',
+  'cleanbrowsing-security',
+  'cleanbrowsing-security-ipv6',
+]
+
+
+
+
+
