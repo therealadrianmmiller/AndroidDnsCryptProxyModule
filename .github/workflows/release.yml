@@ -1,0 +1,35 @@
+name: Build Module
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+  repository_dispatch:
+    types: [manager-released]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch latest signed APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p module/app
+          gh release download -R therealadrianmmiller/AndroidDnsCryptProxyManager \
+            -p dnscryptmonitor.apk -D module/app --clobber
+
+      - name: Build zip
+        run: |
+          cd module
+          zip -r9 ../androiddnscrypt-proxymodule.zip . -x '*.git*'
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || format('build-{0}', github.run_number) }}
+          files: androiddnscrypt-proxymodule.zip
