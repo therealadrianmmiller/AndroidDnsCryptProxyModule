@@ -41,6 +41,25 @@ Screenshots of app, app tabs and features, are [here](https://github.com/thereal
   - Dnscrypt Monitor app is installed and its notification permissions set
   - Private DNS is set to Off
   - Browsers are configured to use encrypted DNS (Firefox and Chrome are searched for, killed, and their prefs added). Note Chrome should pass 4 ticks out of the box. Firefox can be random/fail on Secure SNI (ECH), but this is a known issue due to handshake and being tracked on a bugid
+
+     Settings added/changed in Firefox (data/data/org.mozilla.firefox/files/mozilla/<random alphanumeric>.default/prefs.js):
+     ``` 
+    #ECH Settings added by dnscrypt-proxy module
+    user_pref("network.dns.echconfig.require_authenticated_dns", false)
+    user_pref("network.dns.echconfig.enabled", true)
+    user_pref("network.dns.http3_echconfig.enabled", true)
+    user_pref("network.dns.force_use_https_rr", true)
+    user_pref("network.trr.mode", 0)
+    ```
+
+
+     Settings added/changed in Chrome (json)(/data/data/com.android.chrome/app_chrome/Local State):
+     ``` 
+    dns_over_https":{"mode":"off"}
+    ```
+
+       Note: Troubleshooting tip if dnscrypt-proxy is running, but ads still apear that should eb blocked, make sure these lines appear in your browser
+
 - Root MUST be granted to Dnscrypt Monitor app before restart for seamless operation on restart
 - Reboot completes initial setup
 
