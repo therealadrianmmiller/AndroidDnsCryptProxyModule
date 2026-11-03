@@ -6,7 +6,7 @@ An all in one module, with companion app, providing a basic dnscrypt-proxy servi
 
 ## What It ISNT:
 
-A tinfoil level dnscrypt-proxy setup with anonymised DNS and 12 relays. I use it for system level ad and domain blocking. May not suit the Graphene and Calyx level tinfoilists :)
+A tinfoil hat level dnscrypt-proxy setup with anonymised DNS and 12 relays. I use it for system level ad and domain blocking. May not suit the Graphene and Calyx level tinfoii hatists :)
 
 ## What It Does:
 
