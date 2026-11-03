@@ -165,7 +165,7 @@ Screenshots of app, app tabs and features, are [here](https://github.com/thereal
     'cleanbrowsing-security',
     'cleanbrowsing-security-ipv6',
   ]
- ``` 
+   ``` 
 
 - iptables rules redirect port 53 (DNS) queries to port 5354 which dnscrypt-proxy is listening on, plus IPv6 is disabled via props, all via post-fs-data.sh:
 
