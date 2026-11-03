@@ -63,6 +63,53 @@ Screenshots of app, app tabs and features, are [here](https://github.com/thereal
 - Root MUST be granted to Dnscrypt Monitor app before restart for seamless operation on restart
 - Reboot completes initial setup
 
+### Post reboot
+
+- dnscrypt-proxy is started (service.sh) and uses the TOML config file at /storage/emulated/0/dnscrypt-proxy/dnscrypt-proxy.toml
+  Note: Your first troubleshooting point should be to open /storage/emulated/0/dnscrypt-proxy/ and check the dnscrypt-proxy.toml is there, followed by checking dnscrypt-proxy.log to see the status
+ ```
+# run dnscrypt-proxy
+while ! [ `pgrep -x dnscrypt-proxy` ] ; do 
+	$MODDIR/system/bin/dnscrypt-proxy -config /storage/emulated/0/dnscrypt-proxy/dnscrypt-proxy.toml && sleep 15;
+done
+ ``` 
+
+
+- iptables rules redirect port 53 (DNS) queries to port 5354 which dnscrypt-proxy is listening on, plus IPv6 is disabled via props, all via post-fs-data.sh
+
+  ```
+  # set iptables rules for dnscrypt-proxy
+  iptables -t nat -A OUTPUT -p tcp ! -d 1.1.1.1 --dport 53 -j DNAT --to-destination 127.0.0.1:5354
+  iptables -t nat -A OUTPUT -p udp ! -d 1.1.1.1 --dport 53 -j DNAT --to-destination 127.0.0.1:5354
+
+  # Force disable IPv6 OS connections
+  resetprop net.ipv6.conf.all.accept_redirects 0
+  resetprop net.ipv6.conf.all.disable_ipv6 1
+  resetprop net.ipv6.conf.default.accept_redirects 0
+  resetprop net.ipv6.conf.default.disable_ipv6 1
+  ``` 
+
+- the dnscrypt monitor app is started via boot-completed.sh 
+
+  ```
+  LOG=/storage/emulated/0/dnscrypt-proxy/dnscrypt-monitor-boot.log
+  (
+  until [ "$(getprop sys.boot_completed)" = "1" ]; do sleep 2; done
+  sleep 10
+  i=0
+  while [ $i -lt 6 ]; do
+    out=$(/system/bin/am start-foreground-service -n au.com.dnscryptmonitor/.MonitorService 2>&1)
+    echo "$(date '+%F %T') try $i: $out" > "$LOG"
+    case "$out" in
+      *Error*|*Exception*|*"not found"*) i=$((i+1)); sleep 10 ;;
+      *) break ;;
+    esac
+  done
+  ) &
+  ```
+- Dnscrypt monitor then takes over notifying you of blocked domains, and day to day management
+
+
 ### Normal operation
 
 - Notification when domain is blocked - can be allowed via notification OR via apps Recents tab
