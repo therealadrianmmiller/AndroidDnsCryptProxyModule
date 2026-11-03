@@ -4,5 +4,5 @@ version=v1.0
 versionCode=100
 author=adrianmmiller
 description=DNSCrypt-Proxy Magisk Module With Basic Config That Upstreams To Cloudflare + Monitor and Management App
-updateJson=https://raw.githubusercontent.com/therealadrianmmiller/AndroidDnsCryptProxyModule/main/module/update.json
+updateJson=https://raw.githubusercontent.com/therealadrianmmiller/AndroidDnsCryptProxyModule/main/update.json
 
