@@ -6,7 +6,7 @@ An all in one module, with companion app, providing a basic dnscrypt-proxy servi
 
 ## What It ISNT:
 
-A tinfoil hat level dnscrypt-proxy setup with anonymised DNS and 12 relays. I use it for system level ad and domain blocking. May not suit the Graphene and Calyx level tinfoii hatists :)
+A tinfoil hat level dnscrypt-proxy setup with anonymised DNS and 12 relays. I use it for system level ad and domain blocking. May not suit the Graphene and Calyx level tinfoil hatists :)
 
 ## What It Does:
 
@@ -234,6 +234,9 @@ The app is exactly the 2nd Android app ive (co)written and compiled. Ive tried t
 
 Any issues/bugs/feature requests, please submit via [Issues](https://github.com/therealadrianmmiller/AndroidDnsCryptProxyModule/issues)
 
+
+![GitHub Release](https://img.shields.io/github/v/release/therealadrianmmiller/AndroidDnsCryptProxyModule)
+ ![GitHub Release Date](https://img.shields.io/github/release-date/therealadrianmmiller/AndroidDnsCryptProxyModule) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/therealadrianmmiller/AndroidDnsCryptProxyModule/total)
 
 
 
