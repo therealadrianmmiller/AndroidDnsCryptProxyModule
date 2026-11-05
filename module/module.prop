@@ -1,7 +1,7 @@
 id=au.com.dnscrypt-proxy
 name=Android DNSCrypt-Proxy Module
-version=v1.0
-versionCode=100
+version=v1.1
+versionCode=110
 author=adrianmmiller
 description=DNSCrypt-Proxy Magisk Module With Basic Config That Upstreams To Cloudflare + Monitor and Management App
 updateJson=https://raw.githubusercontent.com/therealadrianmmiller/AndroidDnsCryptProxyModule/main/update.json
